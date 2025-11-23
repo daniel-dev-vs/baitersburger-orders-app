@@ -9,7 +9,6 @@ on:
 
 jobs:
   build-and-push:
-
     runs-on: ubuntu-latest
 
     outputs:
@@ -23,7 +22,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: baitersburger-orders-jar
-          path: target/
+          path: baitersburger-orders/target/
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -35,7 +34,7 @@ jobs:
 
       - name: Create ECR repository if it does not exist
         run: |
-          aws ecr create-repository --repository-name baitersburger-order-app || true
+          aws ecr create-repository --repository-name baitersburger-order-app --region us-east-1 || true
 
       - name: Log in to Amazon ECR
         id: login-ecr
