@@ -4,7 +4,7 @@ resource "aws_ecs_task_definition" "order_app" {
   memory                   = "512"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  execution_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
+  execution_role_arn       = data.aws_iam_role.lab_role.arn
   task_role_arn            = data.aws_iam_role.lab_role.arn
   container_definitions = jsonencode([{
     name      = "order-app"
@@ -55,7 +55,7 @@ resource "aws_ecs_service" "order_app_service" {
   network_configuration {
     subnets          = data.aws_subnets.aws_subnets_default.ids
     security_groups  = [data.aws_security_group.alb_sg.id]
-    assign_public_ip = false
+    assign_public_ip = true
   }
 
   load_balancer {
@@ -71,4 +71,15 @@ resource "aws_ecs_service" "order_app_service" {
     ignore_changes = [task_definition]
   }
 
+}
+
+
+resource "aws_cloudwatch_log_group" "order_app_logs" {
+  name              = "/ecs/order-app-task-family"
+  retention_in_days = 1
+
+  tags = {
+    Name        = "order-app-logs"
+    Environment = "dev"
+  }
 }
