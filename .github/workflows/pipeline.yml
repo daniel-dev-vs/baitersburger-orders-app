@@ -43,8 +43,8 @@ jobs:
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
-          name: baitersburger-jar
-          path: target/*.jar
+          name: baitersburger-orders-jar
+          path: ${{ github.workspace }}/baitersburger-orders/target/*.jar
 
   docker-build:
     needs: [test, build]
