@@ -46,7 +46,7 @@ jobs:
 
   docker-build:
     needs: [test, build]
-    uses: ./.github/workflows/docker.yml
+    uses: ./.github/workflows/ecr.yml
     secrets: inherit
 
   deploy_ecs:
