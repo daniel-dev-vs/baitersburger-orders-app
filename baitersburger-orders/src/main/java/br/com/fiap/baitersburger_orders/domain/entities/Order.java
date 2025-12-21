@@ -49,6 +49,9 @@ public class Order {
     public OrderStatus getStatus() {
         return status;
     }
+    public void setStatus(OrderStatus status){
+        this.status = status;
+    }
 
     public String getCustomerId() {
         return customerId;
@@ -56,5 +59,9 @@ public class Order {
 
     public String getQrCode() {
         return qrCode;
+    }
+
+    public String setQrCode(String qrCode) {
+        return this.qrCode = qrCode;
     }
 }

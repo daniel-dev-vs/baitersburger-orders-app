@@ -9,4 +9,5 @@ public interface OrderGateway {
     List<Order> getByStatus(String status);
     List<Order> getAll();
     Order createOrder(Order order);
+    Order updateOrder(Order order);
 }

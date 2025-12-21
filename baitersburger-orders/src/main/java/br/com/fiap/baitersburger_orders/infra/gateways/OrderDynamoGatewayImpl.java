@@ -82,8 +82,20 @@ public class OrderDynamoGatewayImpl implements OrderGateway {
 
         order.setId(dynamoEntity.getOrderId());
         return order;
-
-
     }
 
+    @Override
+    public Order updateOrder(Order order) {
+        OrderDynamoEntity entity = new OrderDynamoEntity(order.getId(),
+                order.getProductsId(),
+                order.getTotalPrice(),
+                order.getCreatedAt(),
+                order.getStatus(),
+                order.getCustomerId(),
+                order.getQrCode());
+
+        repository.updateOrder(entity);
+
+        return order;
+    }
 }
