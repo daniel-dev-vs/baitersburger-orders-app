@@ -1,8 +1,6 @@
 package br.com.fiap.baitersburger_orders.infra.config;
 
-import br.com.fiap.baitersburger_orders.application.gateways.OrderGateway;
-import br.com.fiap.baitersburger_orders.infra.gateways.OrderDynamoGatewayImpl;
-import br.com.fiap.baitersburger_orders.infra.persistence.OrderDynamoRepository;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

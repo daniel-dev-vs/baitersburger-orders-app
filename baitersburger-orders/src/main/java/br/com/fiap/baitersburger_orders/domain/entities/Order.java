@@ -12,19 +12,29 @@ public class Order {
     private BigDecimal totalPrice;
     private LocalDateTime createdAt;
     private OrderStatus status;
-    private String customerId;
+    private String customerCpf;
     private String qrCode;
 
     public Order(UUID id, List<String> productsId,
                  BigDecimal totalPrice, LocalDateTime createdAt,
-                 OrderStatus status, String customerId, String qrCode) {
+                 OrderStatus status, String customerCpf, String qrCode) {
         this.id = id;
         this.productsId = productsId;
         this.totalPrice = totalPrice;
         this.createdAt = createdAt;
         this.status = status;
-        this.customerId = customerId;
+        this.customerCpf = customerCpf;
         this.qrCode = qrCode;
+    }
+
+    public Order(List<String> productsId,
+                 BigDecimal totalPrice, LocalDateTime createdAt,
+                 OrderStatus status, String customerCpf) {
+        this.productsId = productsId;
+        this.totalPrice = totalPrice;
+        this.createdAt = createdAt;
+        this.status = status;
+        this.customerCpf = customerCpf;
     }
 
     public UUID getId() {
@@ -49,12 +59,19 @@ public class Order {
     public OrderStatus getStatus() {
         return status;
     }
+    public void setStatus(OrderStatus status){
+        this.status = status;
+    }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomerCpf() {
+        return customerCpf;
     }
 
     public String getQrCode() {
         return qrCode;
+    }
+
+    public void setQrCode(String qrCode) {
+        this.qrCode = qrCode;
     }
 }

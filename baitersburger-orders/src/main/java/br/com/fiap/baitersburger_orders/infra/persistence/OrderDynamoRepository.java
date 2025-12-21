@@ -1,5 +1,6 @@
 package br.com.fiap.baitersburger_orders.infra.persistence;
 
+import br.com.fiap.baitersburger_orders.domain.entities.Order;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.enhanced.dynamodb.*;
 import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
@@ -53,5 +54,9 @@ public class OrderDynamoRepository {
 
     public List<OrderDynamoEntity> getAll() {
         return  orderTable.scan().items().stream().collect(Collectors.toList());
+    }
+
+    public void updateOrder(OrderDynamoEntity order) {
+       save(order);
     }
 }
