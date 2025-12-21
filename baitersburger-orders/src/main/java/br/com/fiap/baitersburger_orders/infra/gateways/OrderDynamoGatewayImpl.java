@@ -27,7 +27,7 @@ public class OrderDynamoGatewayImpl implements OrderGateway {
                 orderDynamo.getTotalPrice(),
                 orderDynamo.getCreatedAt(),
                 orderDynamo.getStatus(),
-                orderDynamo.getCustomerId(),
+                orderDynamo.getCustomerCpf(),
                 orderDynamo.getQrCode()
         );
     }
@@ -43,7 +43,7 @@ public class OrderDynamoGatewayImpl implements OrderGateway {
                             orderDynamo.getTotalPrice(),
                             orderDynamo.getCreatedAt(),
                             orderDynamo.getStatus(),
-                            orderDynamo.getCustomerId(),
+                            orderDynamo.getCustomerCpf(),
                             orderDynamo.getQrCode()
                     );
                 }).toList();
@@ -60,7 +60,7 @@ public class OrderDynamoGatewayImpl implements OrderGateway {
                             orderDynamo.getTotalPrice(),
                             orderDynamo.getCreatedAt(),
                             orderDynamo.getStatus(),
-                            orderDynamo.getCustomerId(),
+                            orderDynamo.getCustomerCpf(),
                             orderDynamo.getQrCode()
                             );
                 }).toList();
@@ -75,7 +75,7 @@ public class OrderDynamoGatewayImpl implements OrderGateway {
                         order.getTotalPrice(),
                         order.getCreatedAt(),
                         order.getStatus(),
-                        order.getCustomerId(),
+                        order.getCustomerCpf(),
                         order.getQrCode());
 
         repository.save(dynamoEntity);
@@ -91,7 +91,7 @@ public class OrderDynamoGatewayImpl implements OrderGateway {
                 order.getTotalPrice(),
                 order.getCreatedAt(),
                 order.getStatus(),
-                order.getCustomerId(),
+                order.getCustomerCpf(),
                 order.getQrCode());
 
         repository.updateOrder(entity);

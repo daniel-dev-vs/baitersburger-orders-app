@@ -3,17 +3,12 @@ package br.com.fiap.baitersburger_orders.infra.apis;
 import br.com.fiap.baitersburger_orders.infra.apis.feign.MercadoPagoClient;
 import br.com.fiap.baitersburger_orders.infra.dtos.mercadopago.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
-@Component
+@Service
 public class MercadoPagoApi {
 
     private final MercadoPagoClient client;
