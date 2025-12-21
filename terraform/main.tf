@@ -32,11 +32,11 @@ resource "aws_ecs_task_definition" "order_app" {
       },
       {
         name  = "AWS_ACCESS_KEY"
-        value = "ASIAT4KS72RODPPY32LX"
+        value = "ASIAVRUVPRZCQZQWFX2S"
       },
       {
         name  = "AWS_SECRET_KEY"
-        value = "6vnepG9xotlzpCUVA8lu+APJxAKOKNEJ30lp3/Ar"
+        value = "e6uGdLWhp0J38CtfYzfDpZxjCTTEQiGjd2/i9Zqv"
       }
     ]
 
