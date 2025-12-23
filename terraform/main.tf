@@ -1,3 +1,34 @@
+
+resource "aws_security_group" "ecs_sg" {
+  name        = "baitersburger-ecs-sg"
+  description = "Security group for ECS tasks - allows traffic from ALB"
+  vpc_id      = data.aws_vpc.vpc_default.id
+
+  # Permite tráfego do ALB na porta 8080
+  ingress {
+    description     = "Allow traffic from ALB on port 8080"
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "tcp"
+    security_groups = [data.aws_security_group.alb_sg.id]
+  }
+
+  # Permite todo tráfego de saída (para DynamoDB, ECR, etc)
+  egress {
+    description = "Allow all outbound traffic"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "baitersburger-ecs-sg"
+    Environment = "dev"
+  }
+}
+
+
 resource "aws_ecs_task_definition" "order_app" {
   family                   = "baitersburger-orders"
   cpu                      = "256"
@@ -32,11 +63,11 @@ resource "aws_ecs_task_definition" "order_app" {
       },
       {
         name  = "AWS_ACCESS_KEY"
-        value = "ASIAVRUVPRZCVNM2YX2G"
+        value = "ASIAVRUVPRZCTXYTTJEN"
       },
       {
         name  = "AWS_SECRET_KEY"
-        value = "3w3shSKUem66T85LMyNR7fRaiXwsLnkr2dlbv2Lw"
+        value = "pcYe/7sGNH5w6EiT4bZDTDRnJWcQPtjF+7K2+ANg"
       }
     ]
 
@@ -54,7 +85,7 @@ resource "aws_ecs_service" "order_app_service" {
 
   network_configuration {
     subnets          = data.aws_subnets.aws_subnets_default.ids
-    security_groups  = [data.aws_security_group.alb_sg.id]
+    security_groups  = [aws_security_group.ecs_sg.id]
     assign_public_ip = true
   }
 
