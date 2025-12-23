@@ -34,7 +34,7 @@ data "aws_subnets" "aws_subnets_default" {
 data "aws_security_group" "alb_sg" {
   filter {
     name   = "group-name"
-    values = ["default"]
+    values = ["baitersburger-alb-sg"]
   }
 
   filter {

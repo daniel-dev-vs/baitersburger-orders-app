@@ -9,13 +9,17 @@ import br.com.fiap.baitersburger_orders.application.usecases.GetProductUseCase;
 import br.com.fiap.baitersburger_orders.domain.entities.Order;
 import br.com.fiap.baitersburger_orders.infra.dtos.order.OrderRequestDto;
 import feign.FeignException;
+import org.springframework.beans.factory.annotation.Value;
 
 public class CreateOrderUseCaseImpl implements CreateOrderUseCase {
 
-    OrderGateway gateway;
-    CreateQRCodeUseCase createQrCodeUseCase;
-    GetCustomerUseCase getCustomerUseCase;
-    GetProductUseCase getProductUseCase;
+    private final OrderGateway gateway;
+    private final CreateQRCodeUseCase createQrCodeUseCase;
+    private final GetCustomerUseCase getCustomerUseCase;
+    private final GetProductUseCase getProductUseCase;
+
+    @Value("${VALIDATE_SERVICE:false}")
+    private boolean VALIDATE;
 
     public CreateOrderUseCaseImpl(
             OrderGateway gateway,
@@ -57,16 +61,18 @@ public class CreateOrderUseCaseImpl implements CreateOrderUseCase {
     }
 
     private void verifyIfProductsExists(OrderRequestDto orderRequestDto) {
-        for (String productId : orderRequestDto.productsId()) {
-            boolean productExists = getProductUseCase.productsExists(productId);
-            if (!productExists) {
-                throw new NotFoundException("Product with ID " + productId + " not found!");
+        if(VALIDATE) {
+            for (String productId : orderRequestDto.productsId()) {
+                boolean productExists = getProductUseCase.productsExists(productId);
+                if (!productExists) {
+                    throw new NotFoundException("Product with ID " + productId + " not found!");
+                }
             }
         }
     }
 
     private void verifyIfCustomerExists(OrderRequestDto orderRequestDto) {
-        if (orderRequestDto.customerCpf() != null) {
+        if (orderRequestDto.customerCpf() != null && VALIDATE) {
             boolean customerExists = getCustomerUseCase.customerExists(orderRequestDto.customerCpf());
             if (!customerExists) {
                 throw new NotFoundException("Customer with CPF"+ orderRequestDto.customerCpf() + "not found!");
