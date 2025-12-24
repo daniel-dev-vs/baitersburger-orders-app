@@ -21,6 +21,9 @@ public class OrderDynamoGatewayImpl implements OrderGateway {
     @Override
     public Order getById(String orderId) {
         OrderDynamoEntity orderDynamo = repository.getById(orderId);
+        if(orderDynamo == null){
+            return null;
+        }
         return new  Order(
                 orderDynamo.getOrderId(),
                 orderDynamo.getProductsId(),

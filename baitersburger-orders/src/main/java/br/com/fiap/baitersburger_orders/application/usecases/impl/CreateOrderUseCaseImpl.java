@@ -17,20 +17,20 @@ public class CreateOrderUseCaseImpl implements CreateOrderUseCase {
     private final CreateQRCodeUseCase createQrCodeUseCase;
     private final GetCustomerUseCase getCustomerUseCase;
     private final GetProductUseCase getProductUseCase;
-
-    @Value("${VALIDATE_SERVICE:false}")
-    private boolean VALIDATE;
+    private final boolean VALIDATE;
 
     public CreateOrderUseCaseImpl(
             OrderGateway gateway,
             CreateQRCodeUseCase createQRCodeUseCase,
             GetCustomerUseCase getCustomerUseCase,
-            GetProductUseCase getProductUseCase) {
+            GetProductUseCase getProductUseCase,
+            boolean validate) {
 
         this.gateway = gateway;
         this.createQrCodeUseCase = createQRCodeUseCase;
         this.getCustomerUseCase = getCustomerUseCase;
         this.getProductUseCase = getProductUseCase;
+        this.VALIDATE = validate;
     }
 
     @Override

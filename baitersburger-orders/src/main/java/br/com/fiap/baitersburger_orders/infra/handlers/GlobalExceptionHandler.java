@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
             NotFoundException ex,
             HttpServletRequest request
     ) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+        HttpStatus status = HttpStatus.NOT_FOUND;
 
         ErrorResponse body = ErrorResponse.create(ex, status, ex.getMessage());
 
