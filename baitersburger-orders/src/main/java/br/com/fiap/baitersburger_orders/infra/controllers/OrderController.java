@@ -86,7 +86,7 @@ public class OrderController {
         return ResponseEntity.ok().body(dto);
     }
 
-    @PostMapping("/webhook")
+    @PostMapping("/webhooks")
     public ResponseEntity<String> approve(@RequestHeader Map<String, String> headers, @RequestBody MercadoPagoRequestDTO dto) {
 
         updateOrderUseCase.updateOrderStatus(dto.data().externalReference(),
