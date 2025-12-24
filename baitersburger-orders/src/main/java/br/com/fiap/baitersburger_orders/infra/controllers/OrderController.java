@@ -1,7 +1,6 @@
 package br.com.fiap.baitersburger_orders.infra.controllers;
 
 import br.com.fiap.baitersburger_orders.application.gateways.OrderGateway;
-import br.com.fiap.baitersburger_orders.application.gateways.QRCodeGateway;
 import br.com.fiap.baitersburger_orders.application.usecases.*;
 import br.com.fiap.baitersburger_orders.application.usecases.impl.CreateOrderUseCaseImpl;
 import br.com.fiap.baitersburger_orders.application.usecases.impl.GetOrderUseCaseImpl;
@@ -13,7 +12,6 @@ import br.com.fiap.baitersburger_orders.infra.dtos.order.OrderRequestDto;
 import br.com.fiap.baitersburger_orders.infra.dtos.order.RequestUpdateStatusDTO;
 import br.com.fiap.baitersburger_orders.infra.dtos.order.ResponseCreateOrderDTO;
 import br.com.fiap.baitersburger_orders.infra.dtos.order.ResponseUpdateStatusDTO;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +30,7 @@ public class OrderController {
 
 
     public OrderController(
-            @Qualifier("OrderDynamoGatewayImpl")OrderGateway gateway,
+            OrderGateway gateway,
             CreateQRCodeUseCase createQRCodeUseCase,
             GetCustomerUseCase getCustomerUseCase,
             GetProductUseCase getProductUseCase,

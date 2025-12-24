@@ -18,12 +18,12 @@ public enum OrderStatus {
         return value;
     }
 
-    public static OrderStatus fromValue(String value) throws Exception {
+    public static OrderStatus fromValue(String value) throws IllegalArgumentException {
         for (OrderStatus status : OrderStatus.values()) {
             if (status.getValue().equalsIgnoreCase(value)) {
                 return status;
             }
         }
-        throw new Exception("Order status not found");
+        throw new IllegalArgumentException("Order status does not exist: " + value);
     }
 }

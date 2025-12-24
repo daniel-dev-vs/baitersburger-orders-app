@@ -1,13 +1,12 @@
 package br.com.fiap.baitersburger_orders.infra.persistence;
 
-import br.com.fiap.baitersburger_orders.domain.entities.Order;
+
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.enhanced.dynamodb.*;
 import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class OrderDynamoRepository {
@@ -53,7 +52,7 @@ public class OrderDynamoRepository {
     }
 
     public List<OrderDynamoEntity> getAll() {
-        return  orderTable.scan().items().stream().collect(Collectors.toList());
+        return  orderTable.scan().items().stream().toList();
     }
 
     public void updateOrder(OrderDynamoEntity order) {

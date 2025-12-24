@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.UUID;
 
-@Component("OrderDynamoGatewayImpl")
+@Component
 public class OrderDynamoGatewayImpl implements OrderGateway {
 
     private final OrderDynamoRepository repository;
@@ -39,8 +39,8 @@ public class OrderDynamoGatewayImpl implements OrderGateway {
     public List<Order> getByStatus(String status) {
         return repository.getByStatus(status)
                 .stream()
-                .map(orderDynamo -> {
-                    return new Order(
+                .map(orderDynamo ->
+                     new Order(
                             orderDynamo.getOrderId(),
                             orderDynamo.getProductsId(),
                             orderDynamo.getTotalPrice(),
@@ -48,16 +48,16 @@ public class OrderDynamoGatewayImpl implements OrderGateway {
                             orderDynamo.getStatus(),
                             orderDynamo.getCustomerCpf(),
                             orderDynamo.getQrCode()
-                    );
-                }).toList();
+                    )
+                ).toList();
     }
 
     @Override
     public List<Order> getAll() {
         return repository.getAll()
                 .stream()
-                .map(orderDynamo -> {
-                    return new Order(
+                .map(orderDynamo ->
+                     new Order(
                             orderDynamo.getOrderId(),
                             orderDynamo.getProductsId(),
                             orderDynamo.getTotalPrice(),
@@ -65,8 +65,8 @@ public class OrderDynamoGatewayImpl implements OrderGateway {
                             orderDynamo.getStatus(),
                             orderDynamo.getCustomerCpf(),
                             orderDynamo.getQrCode()
-                            );
-                }).toList();
+                            )
+                ).toList();
 
     }
 
