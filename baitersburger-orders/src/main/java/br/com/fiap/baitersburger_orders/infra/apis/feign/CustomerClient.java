@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface CustomerClient {
 
     @GetMapping("/customers/{cpf}")
-    ResponseQRCodeDTO getCustomerByCpf(@PathVariable String cpf);
+    Object getCustomerByCpf(@PathVariable String cpf);
 }
