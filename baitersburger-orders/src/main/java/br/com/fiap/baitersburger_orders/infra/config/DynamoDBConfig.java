@@ -11,7 +11,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 @Configuration
 public class DynamoDBConfig {
 
-    @Value("${aws.region:us-east-1}")
+    @Value("${AWS_REGION:us-east-1}")
     private String region;
 
     @Bean
