@@ -118,7 +118,7 @@ class OrderControllerTest {
         Order mockOrder = mock(Order.class);
         when(mockOrder.getId()).thenReturn(UUID.fromString(orderId));
 
-        when(updateOrderUseCase.updateOrderStatus(eq(orderId), eq("PREPARING")))
+        when(updateOrderUseCase.updateOrderStatus((orderId), "PREPARING"))
                 .thenReturn(mockOrder);
 
         ResponseEntity<ResponseUpdateStatusDTO> response = orderController.updateOrderStatus(orderId, statusDto);

@@ -1,4 +1,4 @@
-// java
+
 package br.com.fiap.baitersburger_orders.domain.entities;
 
 import org.junit.jupiter.api.Test;
