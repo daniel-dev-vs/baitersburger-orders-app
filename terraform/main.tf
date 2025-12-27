@@ -67,35 +67,35 @@ resource "aws_ecs_task_definition" "order_app" {
     environment = [
       {
         name  = "TABLE_ORDER"
-        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:TABLE_ORDER::"
+        valueFrom = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:TABLE_ORDER::"
       },
       {
         name  = "AWS_ACCESS_KEY"
-        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:AWS_ACCESS_KEY::"
+        valueFrom = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:AWS_ACCESS_KEY::"
       },
       {
         name  = "AWS_SECRET_KEY"
-        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:AWS_SECRET_KEY::"
+        valueFrom = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:AWS_SECRET_KEY::"
       },
       {
         name  = "MERCADO_PAGO_ACCESS_TOKEN"
-        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:MERCADO_PAGO_ACCESS_TOKEN::"
+        valueFrom = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:MERCADO_PAGO_ACCESS_TOKEN::"
       },
       {
         name  = "MERCADO_PAGO_EXTERNAL_POS_ID"
-        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:MERCADO_PAGO_EXTERNAL_POS_ID::"
+        valueFrom = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:MERCADO_PAGO_EXTERNAL_POS_ID::"
       },
       {
         name  = "MERCADO_PAGO_URL"
-        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:MERCADO_PAGO_URL::"
+        valueFrom = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:MERCADO_PAGO_URL::"
       },
       {
         name  = "CUSTOMER_SERVICE_URL"
-        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:CUSTOMER_SERVICE_URL::"
+        valueFrom = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:CUSTOMER_SERVICE_URL::"
       },
       {
         name  = "PRODUCT_SERVICE_URL"
-        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:PRODUCT_SERVICE_URL::"
+        valueFrom = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:PRODUCT_SERVICE_URL::"
       },
       {
         name  = "AWS_REGION"
@@ -103,7 +103,7 @@ resource "aws_ecs_task_definition" "order_app" {
       },
       {
         name  = "VALIDATE_SERVICE"
-        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:VALIDATE_SERVICE::"
+        valueFrom = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:VALIDATE_SERVICE::"
       }
 
     ]
