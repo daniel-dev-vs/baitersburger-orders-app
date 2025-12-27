@@ -38,7 +38,7 @@ class GlobalExceptionHandlerTest {
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertEquals("Pedido não encontrado", response.getBody().getDetailMessageArguments()[0]);
+        assertEquals("Pedido não encontrado", response.getBody().getBody().getDetail());
     }
 
     @Test
