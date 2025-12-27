@@ -1,6 +1,7 @@
 package br.com.fiap.baitersburger_orders.infra.persistence;
 
 import br.com.fiap.baitersburger_orders.domain.entities.OrderStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
@@ -24,7 +25,10 @@ public class OrderDynamoEntity {
     private String customerCpf;
     private String qrCode;
 
+    @Autowired
     public OrderDynamoEntity(){}
+
+
     public OrderDynamoEntity(UUID orderId, List<String> productsId, BigDecimal totalPrice, LocalDateTime createdAt, OrderStatus status, String customerCpf, String qrCode) {
         this.orderId = orderId;
         this.productsId = productsId;

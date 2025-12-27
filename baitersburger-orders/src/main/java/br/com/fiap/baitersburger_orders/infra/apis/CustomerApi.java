@@ -1,7 +1,6 @@
 package br.com.fiap.baitersburger_orders.infra.apis;
 
 import br.com.fiap.baitersburger_orders.infra.apis.feign.CustomerClient;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service

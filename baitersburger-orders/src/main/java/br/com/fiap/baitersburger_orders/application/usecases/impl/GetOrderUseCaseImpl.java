@@ -4,7 +4,6 @@ import br.com.fiap.baitersburger_orders.application.exception.NotFoundException;
 import br.com.fiap.baitersburger_orders.application.gateways.OrderGateway;
 import br.com.fiap.baitersburger_orders.application.usecases.GetOrderUseCase;
 import br.com.fiap.baitersburger_orders.domain.entities.Order;
-import feign.FeignException;
 
 import java.util.List;
 

@@ -8,16 +8,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
+
+
 @Service
 public class MercadoPagoApi {
+
 
     private final MercadoPagoClient client;
 
     @Value("${MERCADO_PAGO_EXTERNAL_POS_ID}")
-    private String MERCADO_PAGO_EXTERNAL_POS_ID;
+    private String mercadoPagoExternalPosId;
 
     @Value("${MERCADO_PAGO_ACCESS_TOKEN}")
-    private String MERCADO_PAGO_ACCESS_TOKEN;
+    private String mercadoPagadoAccessToken;
 
 
     public MercadoPagoApi(MercadoPagoClient client) {
@@ -28,24 +31,16 @@ public class MercadoPagoApi {
     public ResponseQRCodeDTO generateQr(String orderId, String amount) {
 
         RequestQRCodeDTO requestBody = createDto(orderId, amount);
-        try{
-            ResponseQRCodeDTO response = client.createOrderQRCode(
+
+            return client.createOrderQRCode(
                     UUID.randomUUID().toString(),
-                    "Bearer " + MERCADO_PAGO_ACCESS_TOKEN,
+                    "Bearer " + mercadoPagadoAccessToken,
                     requestBody);
-            return response;
-        }
-        catch (Exception ex){
-            throw ex;
-        }
-
-
-
     }
 
 
     public RequestQRCodeDTO createDto(String orderId, String amount) {
-        var qr = new QR(MERCADO_PAGO_EXTERNAL_POS_ID, "dynamic");
+        var qr = new QR(mercadoPagoExternalPosId, "dynamic");
         var configQrCode = new ConfigQRCode(qr);
         var payment = new Payment(amount);
         var transaction = new Transaction(List.of(payment));
