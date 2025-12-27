@@ -1,10 +1,7 @@
 package br.com.fiap.baitersburger_orders.infra.controllers;
 
-import br.com.fiap.baitersburger_orders.application.gateways.OrderGateway;
+
 import br.com.fiap.baitersburger_orders.application.usecases.*;
-import br.com.fiap.baitersburger_orders.application.usecases.impl.CreateOrderUseCaseImpl;
-import br.com.fiap.baitersburger_orders.application.usecases.impl.GetOrderUseCaseImpl;
-import br.com.fiap.baitersburger_orders.application.usecases.impl.UpdateOrderUseCaseImpl;
 import br.com.fiap.baitersburger_orders.domain.entities.Order;
 import br.com.fiap.baitersburger_orders.domain.entities.OrderStatus;
 import br.com.fiap.baitersburger_orders.infra.dtos.mercadopago.MercadoPagoRequestDTO;
@@ -12,7 +9,6 @@ import br.com.fiap.baitersburger_orders.infra.dtos.order.OrderRequestDto;
 import br.com.fiap.baitersburger_orders.infra.dtos.order.RequestUpdateStatusDTO;
 import br.com.fiap.baitersburger_orders.infra.dtos.order.ResponseCreateOrderDTO;
 import br.com.fiap.baitersburger_orders.infra.dtos.order.ResponseUpdateStatusDTO;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,18 +26,13 @@ public class OrderController {
 
 
     public OrderController(
-            OrderGateway gateway,
-            CreateQRCodeUseCase createQRCodeUseCase,
-            GetCustomerUseCase getCustomerUseCase,
-            GetProductUseCase getProductUseCase,
-            @Value("${VALIDATE_SERVICE:false}") boolean validate){
-        this.createOrderUseCase = new CreateOrderUseCaseImpl(gateway,
-                createQRCodeUseCase,
-                getCustomerUseCase,
-                getProductUseCase,
-                validate);
-        this.getOrderUseCase = new GetOrderUseCaseImpl(gateway);
-        this.updateOrderUseCase = new UpdateOrderUseCaseImpl(gateway);
+            CreateOrderUseCase createOrderUseCase,
+            GetOrderUseCase getOrderUseCase,
+            UpdateOrderUseCase updateOrderUseCase
+            ){
+        this.createOrderUseCase = createOrderUseCase;
+        this.getOrderUseCase = getOrderUseCase;
+        this.updateOrderUseCase = updateOrderUseCase;
     }
 
 

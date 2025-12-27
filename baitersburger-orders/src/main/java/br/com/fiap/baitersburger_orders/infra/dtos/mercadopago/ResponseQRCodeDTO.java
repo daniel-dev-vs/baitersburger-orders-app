@@ -11,5 +11,5 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 public record ResponseQRCodeDTO(String id,
                                 String status,
                                 String externalReference,
-                                TypeReponse typeResponse) {
+                                TypeResponse typeResponse) {
 }
