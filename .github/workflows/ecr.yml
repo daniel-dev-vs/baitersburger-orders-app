@@ -9,7 +9,6 @@ on:
 
 jobs:
   build-and-push:
-
     runs-on: ubuntu-latest
 
     outputs:
@@ -22,8 +21,8 @@ jobs:
       - name: Download JAR artifact
         uses: actions/download-artifact@v4
         with:
-          name: baitersburger-jar
-          path: target/
+          name: baitersburger-orders-jar
+          path: baitersburger-orders/target/
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -33,9 +32,10 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
 
-      - name: Create ECR repository if it does not exist
+      - name: Create ECR repository if not exists
         run: |
-          aws ecr create-repository --repository-name baitersburger-order-app || true
+          aws ecr describe-repositories --repository-names baitersburger-order-app \
+            || aws ecr create-repository --repository-name baitersburger-order-app
 
       - name: Log in to Amazon ECR
         id: login-ecr
@@ -48,7 +48,7 @@ jobs:
           ECR_REPOSITORY: baitersburger-order-app
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./baitersburger-orders
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "Pushed image to: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           echo "image_uri=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
