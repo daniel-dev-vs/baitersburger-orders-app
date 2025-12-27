@@ -103,7 +103,7 @@ resource "aws_ecs_task_definition" "order_app" {
       },
       {
         name  = "VALIDATE_SERVICE"
-        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:PRODUCT_SERVICE_URL::"
+        value = "arn:aws:secretsmanager:us-east-1:381491842629:secret:OrdersAppSecretManager-cTpIJc:VALIDATE_SERVICE::"
       }
 
     ]
