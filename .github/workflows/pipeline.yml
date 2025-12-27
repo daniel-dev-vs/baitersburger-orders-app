@@ -20,7 +20,7 @@ jobs:
           cache: 'maven'
 
       - name: Run Unit Tests with Maven
-        run: mvn -B test
+        run: mvn -B test -Dspring.profiles.active=test
         working-directory: ${{ github.workspace }}/baitersburger-orders
   sonar:
     needs: test
@@ -57,7 +57,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          mvn -B verify -Dspring.profiles.active=test org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
             -Dsonar.host.url=https://sonarcloud.io
