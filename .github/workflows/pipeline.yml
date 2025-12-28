@@ -20,6 +20,9 @@ jobs:
           cache: 'maven'
 
       - name: Run Unit Tests with Maven
+        env:
+          ACCESS_KEY_TEST: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          SECRET_KEY_TEST: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: mvn -B test -Dspring.profiles.active=test
         working-directory: ${{ github.workspace }}/baitersburger-orders
   sonar:

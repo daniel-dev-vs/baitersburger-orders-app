@@ -1,0 +1,81 @@
+{
+  "$schema":  "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "ErrorResponse",
+  "description": "Schema for error response object",
+  "properties": {
+    "statusCode": {
+      "type": "string",
+      "description": "HTTP status code name",
+      "examples": ["NOT_FOUND", "BAD_REQUEST", "INTERNAL_SERVER_ERROR"]
+    },
+    "headers":  {
+      "type": "object",
+      "description": "Response headers",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "typeMessageCode": {
+      "type": "string",
+      "description": "Message code for the problem type"
+    },
+    "titleMessageCode": {
+      "type":  "string",
+      "description":  "Message code for the problem title"
+    },
+    "detailMessageCode": {
+      "type": "string",
+      "description": "Message code for the problem detail"
+    },
+    "detailMessageArguments": {
+      "type": ["array", "null"],
+      "description": "Arguments for detail message interpolation",
+      "items": {
+        "type": ["string", "number", "boolean"]
+      }
+    },
+    "body": {
+      "type": "object",
+      "description": "Problem detail body following RFC 7807",
+      "properties": {
+        "type": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI reference that identifies the problem type",
+          "default": "about:blank"
+        },
+        "title": {
+          "type": "string",
+          "description": "Short, human-readable summary of the problem"
+        },
+        "status":  {
+          "type": "integer",
+          "description": "HTTP status code",
+          "minimum":  100,
+          "maximum": 599
+        },
+        "detail":  {
+          "type": "string",
+          "description": "Human-readable explanation specific to this occurrence"
+        },
+        "instance": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI reference that identifies the specific occurrence"
+        }
+      },
+      "required": ["type", "title", "status"],
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "statusCode",
+    "headers",
+    "typeMessageCode",
+    "titleMessageCode",
+    "detailMessageCode",
+    "body"
+  ],
+  "additionalProperties": false
+}

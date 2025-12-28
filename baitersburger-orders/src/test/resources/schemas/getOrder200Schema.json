@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type":  "object",
+  "title": "Order",
+  "description": "Schema for order object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the order"
+    },
+    "productsId": {
+      "type": "array",
+      "description": "List of product IDs in the order",
+      "items":  {
+        "type": "string",
+        "format": "uuid"
+      },
+      "minItems": 1
+    },
+    "totalPrice": {
+      "type": "number",
+      "description": "Total price of the order",
+      "minimum": 0
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "Timestamp when the order was created"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the order",
+      "enum": [
+        "RECEIVED",
+        "PREPARING",
+        "READY",
+        "REQUESTED",
+        "DELIVERED"
+      ]
+    },
+    "customerCpf": {
+      "type": "string",
+      "description": "Customer's CPF (Brazilian tax ID)",
+      "pattern": "^[0-9]{11}$"
+    },
+    "qrCode": {
+      "type":  "string",
+      "description":  "QR code for payment"
+    }
+  },
+  "required": [
+    "id",
+    "productsId",
+    "totalPrice",
+    "createdAt",
+    "status"
+  ],
+  "additionalProperties":  false
+}
