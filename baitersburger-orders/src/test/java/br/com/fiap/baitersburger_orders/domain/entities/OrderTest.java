@@ -1,4 +1,3 @@
-// java
 package br.com.fiap.baitersburger_orders.domain.entities;
 
 import org.junit.jupiter.api.Test;
@@ -201,10 +200,9 @@ class OrderTest {
         Order order = new Order(original, BigDecimal.ONE, LocalDateTime.now(),
                 OrderStatus.REQUESTED, "12345678901");
 
-        original.add("p2"); // we change original list
+        original.add("p2");
 
-        // Order keeps reference to the same list object;
-        // this test only checks current behavior (no defensive copy)
+
         assertEquals(2, order.getProductsId().size());
     }
 

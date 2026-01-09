@@ -20,6 +20,9 @@ jobs:
           cache: 'maven'
 
       - name: Run Unit Tests with Maven
+        env:
+          ACCESS_KEY_TEST: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          SECRET_KEY_TEST: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: mvn -B test -Dspring.profiles.active=test
         working-directory: ${{ github.workspace }}/baitersburger-orders
   sonar:
@@ -60,7 +63,7 @@ jobs:
           mvn -B verify -Dspring.profiles.active=test org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
-            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.host.url=https://sonarcloud.io -Pcoverage
         working-directory: ${{ github.workspace }}/baitersburger-orders
         
 

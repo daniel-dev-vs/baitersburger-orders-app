@@ -61,20 +61,37 @@ class UpdateOrderUseCaseImplTest {
         assertSame(updated, result);
     }
 
+
+    @Test
+    void update_shouldThrowNotFoundExceptionDirectly_whenOrderDoesNotExist() {
+        String id = UUID.randomUUID().toString();
+
+        when(gateway.getById(id)).thenReturn(null);
+
+      assertThrows(
+                NotFoundException.class,
+                () -> useCase.updateOrderStatus(id, OrderStatus.DELIVERED.getValue())
+        );
+
+
+    }
+
+
     @Test
     void update_shouldThrowNotFoundException_whenOrderDoesNotExist() {
         String id = UUID.randomUUID().toString();
 
         when(gateway.getById(id)).thenReturn(null);
+        try{
+            useCase.updateOrderStatus(id, OrderStatus.DELIVERED.getValue());
+        }catch(NotFoundException ex){
+            assertTrue(ex.getMessage().contains(id));
+            verify(gateway).getById(id);
+            verify(gateway, never()).updateOrder(any());
+        }
 
-        NotFoundException ex = assertThrows(
-                NotFoundException.class,
-                () -> useCase.updateOrderStatus(id, OrderStatus.DELIVERED.getValue())
-        );
 
-        assertTrue(ex.getMessage().contains(id));
-        verify(gateway).getById(id);
-        verify(gateway, never()).updateOrder(any());
+
     }
 
     @Test
