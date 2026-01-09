@@ -3,7 +3,6 @@ package br.com.fiap.baitersburger_orders.infra.gateways;
 import br.com.fiap.baitersburger_orders.infra.apis.feign.CustomerClient;
 import feign.FeignException;
 import feign.Request;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

@@ -41,7 +41,7 @@ class OrderDynamoRepositoryTest {
             var field = OrderDynamoRepository.class.getDeclaredField("orderTable");
             field.setAccessible(true);
             field.set(repository, orderTable);
-        } catch (Exception e) {
+        } catch (Exception _) {
             fail("Erro ao configurar mocks de persistência");
         }
     }
