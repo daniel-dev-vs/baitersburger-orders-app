@@ -248,6 +248,12 @@ Os testes de comportamento estão localizados em `src/test/resources/features/`.
 - **Integration Tests**: Testes de integração com REST Assured
 - **BDD Tests**: Testes de comportamento com Cucumber
 
+- **Sonar**:
+<img width="1915" height="933" alt="Screenshot From 2026-01-22 19-35-27" src="https://github.com/user-attachments/assets/57ae1d99-0e5e-4f66-99dd-e12c0138ba98" />
+
+- **Jacoco**:
+<img width="1915" height="933" alt="Screenshot From 2026-01-22 19-37-19" src="https://github.com/user-attachments/assets/5e3d9676-c744-4d74-b89d-d833cb24561c" />
+
 ## Monitoramento
 
 ### Spring Actuator
